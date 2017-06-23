@@ -39,49 +39,44 @@
   </template>
   
   <script>
-    (function() {
-      'use strict';
+    Polymer({
+      is: 'mostly-processes-drawer',
 
-      Polymer({
-        is: 'mostly-processes-drawer',
+      behaviors: [Nuxeo.RoutingBehavior, Mostly.I18nBehavior],
 
-        behaviors: [Nuxeo.RoutingBehavior, Mostly.I18nBehavior],
-
-        properties: {
-          processes: {
-            type: Array,
-            observer: '_processesChanged'
-          },
-          currentProcess: {
-            type: Object,
-            observer: '_currentChanged'
-          }
+      properties: {
+        processes: {
+          type: Array,
+          observer: '_processesChanged'
         },
-
-        _processesChanged: function(newVal, oldVal) {
-          console.log('drawer::_processesChanged', newVal, oldVal);
-        },
-
-        _currentChanged: function(newVal, oldVal) {
-          console.log('drawer::_currentChanged', newVal, oldVal);
-        },
-
-        ready: function() {
-          //this._fetchProcesses();
-        },
-
-        _fetchProcesses: function() {
-          if (this.$.processes) {
-            this.$.processes.get().then(response => {
-              this.processes = response.data;
-              this.processCount = this.processes.length;
-            }).catch(error => {
-              console.log("processes request failed: " + error);
-            });
-          }
+        currentProcess: {
+          type: Object,
+          observer: '_currentChanged'
         }
+      },
 
-      });
-    })();
+      _processesChanged: function(newVal, oldVal) {
+        console.log('drawer::_processesChanged', newVal, oldVal);
+      },
+
+      _currentChanged: function(newVal, oldVal) {
+        console.log('drawer::_currentChanged', newVal, oldVal);
+      },
+
+      ready: function() {
+        //this._fetchProcesses();
+      },
+
+      _fetchProcesses: function() {
+        if (this.$.processes) {
+          this.$.processes.get().then(response => {
+            this.processes = response.data;
+            this.processCount = this.processes.length;
+          }).catch(error => {
+            console.log("processes request failed: " + error);
+          });
+        }
+      }
+    });
   </script>
 </dom-module>

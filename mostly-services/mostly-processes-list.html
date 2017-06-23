@@ -96,80 +96,76 @@
     </mostly-data-list>
   </template>
   <script>
-    (function() {
-      'use strict';
+    Polymer({
+      is: 'mostly-processes-list',
 
-      Polymer({
-        is: 'mostly-processes-list',
-
-        properties: {
-          processes: {
-            type: Array,
-            observer: '_processesChanged'
-          },
-
-          current: {
-            type: Object,
-            observer: '_currentChanged'
-          },
-
-          _selection: {
-            type: Object,
-            observer: '_selectionChanged'
-          },
-
-          /**
-           * Set to true to prevent from fire event to navigate to the process.
-           **/
-          noNavigation: Boolean
+      properties: {
+        processes: {
+          type: Array,
+          observer: '_processesChanged'
         },
 
-        behaviors: [Nuxeo.RoutingBehavior, Mostly.I18nBehavior],
-
-        _processesChanged: function(newVal, oldVal) {
-          console.log('list::_processesChanged', newVal, oldVal);
+        current: {
+          type: Object,
+          observer: '_currentChanged'
         },
 
-        _processName: function(app) {
-          var names = app.split('-');
-          return names.slice(0, names.length - 1).join('-');
+        _selection: {
+          type: Object,
+          observer: '_selectionChanged'
         },
 
-        _selectionChanged: function() {
-          if (this._selection && !this.noNavigation) {
-            page('/processes/' + this._selection.app);
-          }
-        },
+        /**
+         * Set to true to prevent from fire event to navigate to the process.
+         **/
+        noNavigation: Boolean
+      },
 
-        _currentChanged: function(newVal, oldVal) {
-          if (newVal && oldVal && newVal.id === oldVal.id) {
-            return;
-          }
-          if (newVal && this.processes) {
-            for (var i = 0; i < this.processes.length; i++) {
-              if (this.processes[i].id === newVal.id) {
-                this.$.list.selectItem(this.processes[i]);
-                break;
-              }
-            }
-          } else {
-            var _exists = this.processes && this.processes.indexOf(oldVal) > -1;
-            // make sure this process still exists to avoid iron-list exceptions
-            if (_exists) {
-              this.$.list.deselectItem(oldVal);
-            }
-          }
-        },
+      behaviors: [Nuxeo.RoutingBehavior, Mostly.I18nBehavior],
 
-        _computedClass: function(isSelected) {
-          var classes = 'list-item';
-          if (isSelected) {
-            classes += ' selected';
-          }
-          return classes;
+      _processesChanged: function(newVal, oldVal) {
+        console.log('list::_processesChanged', newVal, oldVal);
+      },
+
+      _processName: function(app) {
+        var names = app.split('-');
+        return names.slice(0, names.length - 1).join('-');
+      },
+
+      _selectionChanged: function() {
+        if (this._selection && !this.noNavigation) {
+          page('/processes/' + this._selection.app);
         }
+      },
 
-      });
-    })();
+      _currentChanged: function(newVal, oldVal) {
+        if (newVal && oldVal && newVal.id === oldVal.id) {
+          return;
+        }
+        if (newVal && this.processes) {
+          for (var i = 0; i < this.processes.length; i++) {
+            if (this.processes[i].id === newVal.id) {
+              this.$.list.selectItem(this.processes[i]);
+              break;
+            }
+          }
+        } else {
+          var _exists = this.processes && this.processes.indexOf(oldVal) > -1;
+          // make sure this process still exists to avoid iron-list exceptions
+          if (_exists) {
+            this.$.list.deselectItem(oldVal);
+          }
+        }
+      },
+
+      _computedClass: function(isSelected) {
+        var classes = 'list-item';
+        if (isSelected) {
+          classes += ' selected';
+        }
+        return classes;
+      }
+
+    });
   </script>
 </dom-module>
