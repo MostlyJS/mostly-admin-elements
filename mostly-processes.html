@@ -67,6 +67,10 @@
         width: 100%;
       }
 
+      mostly-data-table {
+        height: 550px !important;
+      }
+
       .process-header {
         background-color: var(--nuxeo-box);
         box-shadow: 0 3px 5px rgba(0,0,0,0.04);
@@ -90,7 +94,7 @@
       }
     </style>
 
-    <mostly-resource id="processes" path="/stats-processes"></mostly-resource>
+    <mostly-resource id="actions" path="/stats-actions/?app=[[current.app]]"></mostly-resource>
 
     <mostly-page>
       <div class="header">
@@ -122,7 +126,36 @@
             </div>
             <div class="layout horizontal wrap">
               <div class="vertical layout flex-2 document-view">
-                TODO: services
+
+                <!-- services list -->
+                <mostly-page-provider auto
+                  id="statsActions"
+                  page-size="20"
+                  provider="stats-actions?app=[[current.app]]"
+                  schemas="app,rss,uptime"
+                  sort='{id: 1}'>
+                </mostly-page-provider>
+                <mostly-data-table id="actionListList"
+                  nx-provider="statsActions"
+                  empty-label="[[i18n('queryWidget.noDocuments')]]">
+                  <mostly-data-table-column name="[[i18n('statsActions.datatable.header.topic')]]" sort-by="id" flex="100">
+                    <template>
+                      <nuxeo-thumbnail document="[[item]]"></nuxeo-thumbnail>
+                      <a class="ellipsis" href$="[[urlFor('service', item.id)]]">[[item.pattern.topic]]</a>
+                    </template>
+                  </mostly-data-table-column>
+                  <mostly-data-table-column name="[[i18n('statsActions.datatable.header.cmd')]]" flex="100">
+                    <template>
+                      [[item.pattern.cmd]]
+                    </template>
+                  </mostly-data-table-column>
+                  <mostly-data-table-column name="[[i18n('statsActions.datatable.header.ts')]]" flex="50">
+                    <template>
+                      <nuxeo-date datetime="[[item.ts]]" format="relative"></nuxeo-date>
+                    </template>
+                  </mostly-data-table-column>
+                </mostly-data-table>
+
               </div>
               <div class="flex process-view">
                 <paper-card>
@@ -210,9 +243,11 @@
       },
 
       _currentChanged: function(newVal, oldVal) {
-        console.log('processes::_currentChanged', newVal, oldVal);
+        //console.log('processes::_currentChanged', newVal, oldVal);
         if (this.current) {
-          //this.$.currentTaskDoc.get();
+          this.$.actions.get().then(resp => {
+            console.log('actions', resp);
+          });
         }
       },
 
