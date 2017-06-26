@@ -123,10 +123,6 @@
 
       behaviors: [Nuxeo.RoutingBehavior, Mostly.I18nBehavior],
 
-      _processesChanged: function(newVal, oldVal) {
-        console.log('list::_processesChanged', newVal, oldVal);
-      },
-
       _processName: function(app) {
         var names = app.split('-');
         return names.slice(0, names.length - 1).join('-');
@@ -136,6 +132,10 @@
         if (this._selection && !this.noNavigation) {
           page('/processes/' + this._selection.app);
         }
+      },
+
+      _processesChanged: function(newVal, oldVal) {
+        //console.log('list::_processesChanged', newVal, oldVal);
       },
 
       _currentChanged: function(newVal, oldVal) {

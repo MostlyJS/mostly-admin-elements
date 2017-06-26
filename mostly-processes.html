@@ -198,21 +198,6 @@
         page('/processes/' + e.model.process.app);
       },
 
-      ready: function() {
-        this._fetchProcesses();
-      },
-
-      _fetchProcesses: function() {
-        if (this.$.processes) {
-          this.$.processes.get().then(response => {
-            this.processes = response.data;
-            this.processCount = this.processes.length;
-          }).catch(error => {
-            console.log("processes request failed: " + error);
-          });
-        }
-      },
-
       _processName: function(app) {
         var names = app.split('-');
         return names.slice(0, names.length - 1).map(word => {
@@ -221,7 +206,7 @@
       },
 
       _processesChanged: function(newVal, oldVal) {
-        console.log('processes::_processesChanged', newVal, oldVal);
+        //console.log('processes::_processesChanged', newVal, oldVal);
       },
 
       _currentChanged: function(newVal, oldVal) {
