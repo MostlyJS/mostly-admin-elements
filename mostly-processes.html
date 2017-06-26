@@ -94,8 +94,6 @@
       }
     </style>
 
-    <mostly-resource id="actions" path="/stats-actions/?app=[[current.id]]"></mostly-resource>
-
     <mostly-page>
       <div class="header">
         <template is="dom-if" if="[[_hasCurrent(current)]]">
@@ -257,11 +255,6 @@
 
       _currentChanged: function(newVal, oldVal) {
         //console.log('processes::_currentChanged', newVal, oldVal);
-        if (this.current) {
-          this.$.actions.get().then(resp => {
-            console.log('actions', resp);
-          });
-        }
       },
 
       _hasCurrent: function() {
