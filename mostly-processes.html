@@ -94,12 +94,12 @@
       }
     </style>
 
-    <mostly-resource id="actions" path="/stats-actions/?app=[[current.app]]"></mostly-resource>
+    <mostly-resource id="actions" path="/stats-actions/?app=[[current.id]]"></mostly-resource>
 
     <mostly-page>
       <div class="header">
         <template is="dom-if" if="[[_hasCurrent(current)]]">
-          <span class="flex">[[current.app]]</span>
+          <span class="flex">[[current.id]]</span>
         </template>
         <template is="dom-if" if="[[!_hasCurrent(current)]]">
           <span class="flex">[[i18n('processes.label')]]</span>
@@ -117,7 +117,7 @@
 
               <iron-icon icon="icons:content-paste" class="process-name-icon"></iron-icon>
               <div class="layout horizontal center flex">
-                <h3 class="process-name">[[i18n(current.app)]]</h3>
+                <h3 class="process-name">[[i18n(current.id)]]</h3>
                 <span class="workflow-name">on 127.0.0.1</span>
               </div>
 
@@ -131,7 +131,7 @@
                 <mostly-page-provider auto
                   id="statsActions"
                   page-size="20"
-                  provider="stats-actions?app=[[current.app]]"
+                  provider="stats-actions?app=[[current.id]]"
                   schemas="app,rss,uptime"
                   sort='{id: 1}'>
                 </mostly-page-provider>
@@ -159,7 +159,7 @@
               </div>
               <div class="flex process-view">
                 <paper-card>
-                  TODO: [[current.app]]
+                  TODO: [[current.id]]
                 </paper-card>
               </div>
             </div>
@@ -174,12 +174,12 @@
                 <div class="layout horizontal flex">
                   <iron-icon icon="icons:content-paste" class="process-name-icon"></iron-icon>
                   <div class="process-info layout vertical">
-                    <h3 class="process-name">[[_processName(process.app)]]</h3>
+                    <h3 class="process-name">[[_processName(process.id)]]</h3>
                   </div>
                 </div>
                 <div class="layout horizontal flex">
                   <div class="process-info layout vertical">
-                    <h3 class="process-name">[[process.app]]</h3>
+                    <h3 class="process-name">[[process.id]]</h3>
                     <div class="taskDoc">
                       <span class="process-property">[[i18n('processList.on')]]</span>
                       <span class="doc-title">127.0.0.1</span>
@@ -228,7 +228,7 @@
       behaviors: [Nuxeo.RoutingBehavior, Mostly.I18nBehavior],
 
       _process: function(e) {
-        page('/processes/' + e.model.process.app);
+        page('/processes/' + e.model.process.id);
       },
 
       _processName: function(app) {
@@ -267,11 +267,11 @@
       },
 
       _prev: function() {
-        page('/processes/' + this.processes[this.currenIndex - 1].app);
+        page('/processes/' + this.processes[this.currenIndex - 1].id);
       },
 
       _next: function() {
-        page('/processes/' + this.processes[this.currenIndex + 1].app);
+        page('/processes/' + this.processes[this.currenIndex + 1].id);
       },
 
       _isFirst: function() {

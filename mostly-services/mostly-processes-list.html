@@ -79,7 +79,7 @@
         <div tabindex$="{{tabIndex}}" class$="[[_computedClass(selected)]]">
           <div class="process-box vertical layout">
             <div class="task-info horizontal layout center">
-              <span class="process-name">[[_processName(process.app)]]</span>
+              <span class="process-name">[[_processName(process.id)]]</span>
             </div>
             <div class="task-detail">
               <div class="processDoc horizontal layout center">
@@ -130,7 +130,7 @@
 
       _selectionChanged: function() {
         if (this._selection && !this.noNavigation) {
-          page('/processes/' + this._selection.app);
+          page('/processes/' + this._selection.id);
         }
       },
 
