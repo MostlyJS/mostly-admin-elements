@@ -138,13 +138,13 @@
                 <mostly-data-table id="actionListList"
                   nx-provider="statsActions"
                   empty-label="[[i18n('queryWidget.noDocuments')]]">
-                  <mostly-data-table-column name="[[i18n('statsActions.datatable.header.topic')]]" sort-by="id" flex="100">
+                  <mostly-data-table-column name="[[i18n('statsActions.datatable.header.topic')]]" sort-by="pattern.topic" flex="100">
                     <template>
                       <nuxeo-thumbnail document="[[item]]"></nuxeo-thumbnail>
                       <a class="ellipsis" href$="[[urlFor('service', item.id)]]">[[item.pattern.topic]]</a>
                     </template>
                   </mostly-data-table-column>
-                  <mostly-data-table-column name="[[i18n('statsActions.datatable.header.cmd')]]" flex="100">
+                  <mostly-data-table-column name="[[i18n('statsActions.datatable.header.cmd')]]" sort-by="pattern.cmd" flex="100">
                     <template>
                       [[item.pattern.cmd]]
                     </template>
