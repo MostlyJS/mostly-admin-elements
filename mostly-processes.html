@@ -115,7 +115,7 @@
 
               <iron-icon icon="icons:content-paste" class="process-name-icon"></iron-icon>
               <div class="layout horizontal center flex">
-                <h3 class="process-name">[[i18n(current.id)]]</h3>
+                <h3 class="process-name">[[i18n(current.app)]]</h3>
                 <span class="workflow-name">on 127.0.0.1</span>
               </div>
 
@@ -129,7 +129,7 @@
                 <mostly-page-provider auto
                   id="statsActions"
                   page-size="20"
-                  provider="stats-actions?app=[[current.id]]"
+                  provider="actions-stats?app=[[current.app]]"
                   schemas="app,rss,uptime"
                   sort='{id: 1}'>
                 </mostly-page-provider>
@@ -159,7 +159,7 @@
                 <paper-card>
                   <div class="process-box vertical layout">
                   <div class="task-info horizontal layout center">
-                    <span class="process-name">[[_processName(current.id)]]</span>
+                    <span class="process-name">[[_processName(current.app)]]</span>
                   </div>
                   <div class="task-detail">
                     <div class="processDoc horizontal layout center">
@@ -185,12 +185,12 @@
                 <div class="layout horizontal flex">
                   <iron-icon icon="icons:content-paste" class="process-name-icon"></iron-icon>
                   <div class="process-info layout vertical">
-                    <h3 class="process-name">[[_processName(process.id)]]</h3>
+                    <h3 class="process-name">[[_processName(process.app)]]</h3>
                   </div>
                 </div>
                 <div class="layout horizontal flex">
                   <div class="process-info layout vertical">
-                    <h3 class="process-name">[[process.id]]</h3>
+                    <h3 class="process-name">[[process.app]]</h3>
                     <div class="taskDoc">
                       <span class="process-property">[[i18n('processList.on')]]</span>
                       <span class="doc-title">127.0.0.1</span>
