@@ -132,7 +132,7 @@
 
       _selectionChanged: function() {
         if (this._selection && !this.noNavigation) {
-          page('/processes/' + this._selection.id);
+          this.navigateTo('processes', this._selection.id);
         }
       },
 

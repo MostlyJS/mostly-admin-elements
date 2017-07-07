@@ -239,14 +239,18 @@
       behaviors: [Mostly.RoutingBehavior, Mostly.I18nBehavior],
 
       _process: function(e) {
-        page('/processes/' + e.model.process.id);
+        this.navigateTo('processes', e.model.process.id);
       },
 
       _processName: function(app) {
-        var names = app.split('-');
-        return names.slice(0, names.length - 1).map(word => {
-          return word.charAt(0).toUpperCase() + word.slice(1);
-        }).join(' ');
+        if (app) {
+          var names = app.split('-');
+          return names.slice(0, names.length - 1).map(word => {
+            return word.charAt(0).toUpperCase() + word.slice(1);
+          }).join(' ');
+        } else {
+          return null;
+        }
       },
 
       _processesChanged: function(newVal, oldVal) {
@@ -273,11 +277,11 @@
       },
 
       _prev: function() {
-        page('/processes/' + this.processes[this.currenIndex - 1].id);
+        this.navigateTo('processes', this.processes[this.currenIndex - 1].id);
       },
 
       _next: function() {
-        page('/processes/' + this.processes[this.currenIndex + 1].id);
+        this.navigateTo('processes', this.processes[this.currenIndex + 1].id);
       },
 
       _isFirst: function() {
