@@ -1,21 +1,21 @@
 <!-- USER MENU -->
 
-<nuxeo-slot-content name="processesDrawerItem" slot="DRAWER_ITEMS" order="10">
+<mostly-slot-content name="processesDrawerItem" slot="DRAWER_ITEMS" order="10">
   <template>
     <mostly-menu-icon name="processes" icon="mostly:collections" id="menuProcesses" label="app.processes" badge="[[processCount]]"></mostly-menu-icon>
   </template>
-</nuxeo-slot-content>
-<nuxeo-slot-content name="processesDrawerPage" slot="DRAWER_PAGES">
+</mostly-slot-content>
+<mostly-slot-content name="processesDrawerPage" slot="DRAWER_PAGES">
   <template>
     <mostly-processes-drawer name="processes" processes="[[processes]]" current-process="[[currentProcess]]"></mostly-processes-drawer>
   </template>
-</nuxeo-slot-content>
+</mostly-slot-content>
 
 <!-- PAGES -->
 
-<nuxeo-slot-content name="processesPage" slot="PAGES">
+<mostly-slot-content name="processesPage" slot="PAGES">
   <template>
     <mostly-processes name="processes" id="processes-dashboard" processes="[[processes]]" current="[[currentProcess]]"></mostly-processes>
   </template>
-</nuxeo-slot-content>
+</mostly-slot-content>
 
