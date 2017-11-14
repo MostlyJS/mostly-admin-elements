@@ -138,7 +138,7 @@
                   empty-label="[[i18n('queryWidget.noDocuments')]]">
                   <mostly-data-table-column name="[[i18n('statsActions.datatable.header.topic')]]" sort-by="pattern.topic" flex="100">
                     <template>
-                      <nuxeo-thumbnail document="[[item]]"></nuxeo-thumbnail>
+                      <mostly-thumbnail document="[[item]]"></mostly-thumbnail>
                       <a class="ellipsis" href$="[[urlFor('service', item.id)]]">[[item.pattern.topic]]</a>
                     </template>
                   </mostly-data-table-column>
