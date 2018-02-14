@@ -205,7 +205,7 @@
                 </div>
               </div>
             </template>
-            <template is="dom-if" if="[[_empty(processes)]]">
+            <template is="dom-if" if="[[!processes.length]]">
               <div class="process-box">[[i18n('processes.noTasks')]]</div>
             </template>
           </div>
@@ -286,10 +286,6 @@
 
       _isLast: function() {
         return this.currenIndex === this.processes.length - 1 || this.currenIndex < 0;
-      },
-
-      _empty: function(processes) {
-        return processes && processes.length === 0;
       },
 
       get currenIndex() {
