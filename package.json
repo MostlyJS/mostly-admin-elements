@@ -1,6 +1,6 @@
 {
   "name": "mostly-admin-elements",
-  "description": "Admin ui coomponents for managing MostlyJS microservices",
+  "description": "Admin system web coomponents for managing MostlyJS microservices",
   "version": "1.0.1",
   "license": "MIT",
   "devDependencies": {
