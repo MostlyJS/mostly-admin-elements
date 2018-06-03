@@ -1,7 +1,7 @@
 Mostly System Admin Web Components
 ==================================
 
-Admin system web coomponents for managing MostlyJS microservices
+monitor and admin web components for managing MostlyJS microservices
 
 # Usage
 
