@@ -13,6 +13,8 @@
     <style>
       :host {
         display: block;
+        position: relative;
+        height: calc(100vh - 7.7em);
       }
 
       .process-box {
@@ -57,18 +59,32 @@
 
       mostly-data-list {
         display: block;
-        position: relative;
-        height: calc(100vh - 7.7em);
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        min-height: auto;
       }
 
-      /* fix IE11 tap selection not working for process list items (NXP-21833) */
+      /* fix IE11 tap selection not working for process list items */
       .process-box {
         pointer-events: none;
+        @apply --layout-vertical;
       }
-      /* prevent previous fix from disabling the default playing-user-tag click behavior (NXP-21833) */
-      .process-box playing-user-tag,
+      /* prevent previous fix from disabling the default playing-user-tag click behavior */
       .process-box mostly-date {
         pointer-events: all;
+      }
+
+      .process-name {
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+
+      .horizontal {
+        @apply --layout-horizontal;
+        @apply --layout-center;
       }
     </style>
 
